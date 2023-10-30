@@ -1,11 +1,12 @@
+from sys import exit
+
 import matplotlib.pyplot as plt
 import numpy as np
-from numpy import ndarray
-from scipy.optimize import curve_fit
-from sys import exit
 from matplotlib.ticker import MaxNLocator
-from data_processing import (extract_data_new, W_calculation_upup, W_calculation_up_down, generate_chi, generate_fitting_params, generate_omega_sum,
-                             generate_summed_w_c, cut, fourier_transform, linear_fit, generate_fitting_params_curved)
+
+
+from data_processing import (W_calculation_up_down, W_calculation_upup, fourier_transform, generate_chi,
+                             generate_fitting_params, generate_summed_w_c)
 
 axis_font = {'fontname':'Arial', 'size':'15'}
 BASIC_PATH = '/Users/mariagazizova/work/test_sum_omega/'
@@ -84,8 +85,6 @@ for b, bb in enumerate(beta):
         extract_W_r_dependence(U_list, bb, False, full=True)
 
 
-# print(W_00_err_1212_ud)
-# print(W_00_err_full_ud)
 
 
 # data = np.column_stack((U_list, W_00_1212_uu[5], W_00_1212_ud[5]))
@@ -120,8 +119,6 @@ np.savetxt("data_W_ud_01.txt", data_ud_01, fmt='%.9e')
 # exit(0)
 
 
-# print(U_list)
-# print(W_00_1212_uu[3])
 u_ind = 10
 u_ind_1 = 15
 print(U_list[15])

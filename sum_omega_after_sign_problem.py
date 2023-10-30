@@ -1,10 +1,13 @@
+from sys import exit
+
 import matplotlib.pyplot as plt
 import numpy as np
 from numpy import ndarray
 from scipy.optimize import curve_fit
-from sys import exit
-from data_processing import (extract_data_new, W_calculation_upup, W_calculation_up_down, generate_chi, generate_fitting_params, generate_omega_sum,
-                             generate_summed_w_c, cut, fourier_transform, linear_fit, generate_fitting_params_curved)
+
+from data_processing import (W_calculation_up_down, W_calculation_upup, cut, extract_data_new, fourier_transform,
+                             generate_chi, generate_fitting_params, generate_fitting_params_curved, generate_omega_sum,
+                             generate_summed_w_c, linear_fit)
 
 axis_font = {'fontname':'Arial', 'size':'15'}
 
