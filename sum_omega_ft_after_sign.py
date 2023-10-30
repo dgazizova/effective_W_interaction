@@ -16,9 +16,7 @@ W_upup = dict()
 W_upup_err = dict()
 
 beta = [1, 2, 3, 4, 5, 6, 7, 8.33]
-# beta = [5]
-# 12*12 grid
-grid_size = 169
+grid_size = 169 # 12*12 grid
 omega = 15
 uu_orders_trancation = [0, 2, 3, 4]
 ud_orders_trancation = [1, 2, 3, 4]
