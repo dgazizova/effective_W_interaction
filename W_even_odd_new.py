@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from data_processing import (extract_data_new, W_calculation_upup, W_calculation_up_down, generate_chi_odd, generate_fitting_params, generate_omega_sum,
+from data_processing import (extract_data_new, W_calculation_upup, W_calculation_up_down, generate_chi, generate_fitting_params, generate_omega_sum,
                              generate_summed_w_c, cut, fourier_transform, linear_fit, generate_fitting_params_curved)
 
 
@@ -23,8 +23,8 @@ W_updown_err = dict()
 # chi_odd, chi_odd_err = generate_chi_odd(odd_orders, BASIC_PATH +'/odd_1', U, 4)
 # chi_even, chi_even_err = generate_chi_odd(even_orders, BASIC_PATH +'/even_1', U, 4)
 
-chi_odd, chi_odd_err = generate_chi_odd(odd_orders, BASIC_PATH +'/odd', U, 4)
-chi_even, chi_even_err = generate_chi_odd(even_orders, BASIC_PATH +'/even', U, 4)
+chi_odd, chi_odd_err = generate_chi(odd_orders, BASIC_PATH + '/odd', U, 4)
+chi_even, chi_even_err = generate_chi(even_orders, BASIC_PATH + '/even', U, 4)
 
 data = chi_odd[0]
 np.savetxt("bubble.txt", data, fmt='%.9e')

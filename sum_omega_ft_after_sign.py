@@ -4,7 +4,7 @@ from numpy import ndarray
 from scipy.optimize import curve_fit
 from sys import exit
 from matplotlib.ticker import MaxNLocator
-from data_processing import (extract_data_new, W_calculation_upup, W_calculation_up_down, generate_chi_odd, generate_fitting_params, generate_omega_sum,
+from data_processing import (extract_data_new, W_calculation_upup, W_calculation_up_down, generate_chi, generate_fitting_params, generate_omega_sum,
                              generate_summed_w_c, cut, fourier_transform, linear_fit, generate_fitting_params_curved)
 
 axis_font = {'fontname':'Arial', 'size':'15'}
@@ -31,8 +31,8 @@ def extract_W_r_dependence(U_list, beta, spin, full=False):
     W_11_err = np.zeros(len(U_list))
     for u, uu in enumerate(U_list):
         int_beta = int(beta)
-        odd_u, odd_err_u = generate_chi_odd(odd_orders, BASIC_PATH + f'omega_q/beta{int_beta}/odd', uu, 3)
-        even_u, even_err_u = generate_chi_odd(even_orders, BASIC_PATH + f'omega_q/beta{int_beta}/even', uu, 3)
+        odd_u, odd_err_u = generate_chi(odd_orders, BASIC_PATH + f'omega_q/beta{int_beta}/odd', uu, 3)
+        even_u, even_err_u = generate_chi(even_orders, BASIC_PATH + f'omega_q/beta{int_beta}/even', uu, 3)
         if spin:
             W_u, W_u_err = W_calculation_upup(odd_u[3], odd_err_u[3], even_u[3], even_err_u[3], uu)
         else:
@@ -171,9 +171,9 @@ def extract_W_r_dependence_trunc(U_list, beta, spin):
     for u, uu in enumerate(U_list):
         int_beta = int(beta)
         if spin:
-            W_u, W_err_u = generate_chi_odd(uu_orders_trancation, BASIC_PATH + f'sum_omega_trancation/beta{int_beta}/uu', uu,                                             4)
+            W_u, W_err_u = generate_chi(uu_orders_trancation, BASIC_PATH + f'sum_omega_trancation/beta{int_beta}/uu', uu, 4)
         else:
-            W_u, W_err_u = generate_chi_odd(ud_orders_trancation, BASIC_PATH + f'sum_omega_trancation/beta{int_beta}/ud', uu, 4)
+            W_u, W_err_u = generate_chi(ud_orders_trancation, BASIC_PATH + f'sum_omega_trancation/beta{int_beta}/ud', uu, 4)
         for keys in W_u:
             W_u[keys] = W_u[keys] * uu * (-1)
             W_err_u[keys] = W_err_u[keys] * uu * (-1)

@@ -3,7 +3,7 @@ import numpy as np
 from numpy import ndarray
 from scipy.optimize import curve_fit
 from sys import exit
-from data_processing import (extract_data_new, W_calculation_upup, W_calculation_up_down, generate_chi_odd, generate_fitting_params, generate_omega_sum,
+from data_processing import (extract_data_new, W_calculation_upup, W_calculation_up_down, generate_chi, generate_fitting_params, generate_omega_sum,
                              generate_summed_w_c, cut, fourier_transform, linear_fit, generate_fitting_params_curved)
 
 axis_font = {'fontname':'Arial', 'size':'15'}
@@ -25,10 +25,10 @@ omega = 15
 def extract_chi_for_difbeta(beta, odd):
     int_beta = int(beta)
     if odd:
-        chi_12_12, chi_12_12_err = generate_chi_odd(odd_orders, BASIC_PATH + f'omega_q/beta{int_beta}/odd', U, 3)
+        chi_12_12, chi_12_12_err = generate_chi(odd_orders, BASIC_PATH + f'omega_q/beta{int_beta}/odd', U, 3)
         orders = odd_orders
     else:
-        chi_12_12, chi_12_12_err = generate_chi_odd(even_orders, BASIC_PATH + f'omega_q/beta{int_beta}/even', U, 3)
+        chi_12_12, chi_12_12_err = generate_chi(even_orders, BASIC_PATH + f'omega_q/beta{int_beta}/even', U, 3)
         orders = even_orders
     chi_3 = dict()
     chi_3_err = dict()
@@ -41,8 +41,8 @@ def extract_chi_for_difbeta(beta, odd):
 
 def extract_W_for_difbeta(beta, spin):
     int_beta = int(beta)
-    chi_odd_12_12, chi_odd_12_12_err = generate_chi_odd(odd_orders, BASIC_PATH + f'omega_q/beta{int_beta}/odd', U, 3)
-    chi_even_12_12, chi_even_12_12_err = generate_chi_odd(even_orders, BASIC_PATH + f'omega_q/beta{int_beta}/even', U, 3)
+    chi_odd_12_12, chi_odd_12_12_err = generate_chi(odd_orders, BASIC_PATH + f'omega_q/beta{int_beta}/odd', U, 3)
+    chi_even_12_12, chi_even_12_12_err = generate_chi(even_orders, BASIC_PATH + f'omega_q/beta{int_beta}/even', U, 3)
     W_12_12 = dict()
     W_12_12_err = dict()
     if spin:
@@ -103,9 +103,9 @@ ud_orders_trancation = [1, 2, 3, 4]
 def extract_trunc_for_beta(beta, spin):
     int_beta = int(beta)
     if spin:
-        W_4, W_err_4 = generate_chi_odd(uu_orders_trancation, BASIC_PATH + f'sum_omega_trancation/beta{int_beta}/uu', U=U, o=4)
+        W_4, W_err_4 = generate_chi(uu_orders_trancation, BASIC_PATH + f'sum_omega_trancation/beta{int_beta}/uu', U=U, o=4)
     else:
-        W_4, W_err_4 = generate_chi_odd(ud_orders_trancation, BASIC_PATH + f'sum_omega_trancation/beta{int_beta}/ud', U=U, o=4)
+        W_4, W_err_4 = generate_chi(ud_orders_trancation, BASIC_PATH + f'sum_omega_trancation/beta{int_beta}/ud', U=U, o=4)
     for keys in W_4:
         W_4[keys] = W_4[keys] * U
         W_err_4[keys] = W_err_4[keys] * U
